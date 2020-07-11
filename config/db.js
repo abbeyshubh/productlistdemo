@@ -9,8 +9,8 @@ mongoose
       useUnifiedTopology: true,
     }
   )
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err));
+  .then((res) => console.log("Connected"))
+  .catch((err) => console.log("Cannot connect to DB"));
 
 // require("../modals/details.modal");
 // / || "mongodb://localhost:27017/categoriesDB"
