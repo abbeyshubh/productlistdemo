@@ -19,6 +19,15 @@ app.use("/api/post", detailRoutes);
 app.get("/", (req, res) => {
   res.send("<h1></h1>");
 });
+showTimes = () => {
+  let result = "";
+  const times = process.env.TIMES || 5;
+  for (i = 0; i < times; i++) {
+    result += i + " ";
+  }
+  return result;
+};
+app.get("/times", (req, res) => res.send(showTimes()));
 
 app.listen(port, () => {
   console.log(`Express Server started at : ${port}`);
