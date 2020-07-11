@@ -11,11 +11,12 @@ exports.createProducts = async (req, res, next) => {
         console.log(error);
         return res.status(httpStatus.BAD_REQUEST).json({
           message: "Error in saving Product detail",
+          status: 400,
         });
       } else {
         return res
           .status(httpStatus.OK)
-          .json({ message: "Details Saved Successfully", data });
+          .json({ message: "Details Saved Successfully", data, status: 200 });
       }
     });
   } catch (err) {
@@ -27,7 +28,7 @@ exports.getProducts = async (req, res, next) => {
     const detail = await details
       .find()
       .select("productName price productImage");
-    return res.status(httpStatus.OK).json({ data: detail });
+    return res.status(httpStatus.OK).json({ data: detail, status: 200 });
   } catch (err) {
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).json(err.message);
   }
@@ -36,7 +37,7 @@ exports.getProductDetailsById = async (req, res, next) => {
   try {
     console.log(req.body.id);
     const detail = await details.find({ _id: req.body.id });
-    return res.status(httpStatus.OK).json({ data: detail[0] });
+    return res.status(httpStatus.OK).json({ data: detail[0], status: 200 });
   } catch (err) {
     return res.status(httpStatus.INTERNAL_SERVER_ERROR).json(err.message);
   }
